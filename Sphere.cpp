@@ -1,5 +1,16 @@
-//3 polydisperse balls are given.
-//returns 4th ball which contacts them.
+//a few polydisperse spheres are given.
+//The function in this header-like cpp file returns a sphere which contacts them.
+
+//There are 4 main functions as follows:
+
+//Function "another" makes 4th sphere from 3 sphere.
+
+//Function "anotherx" makes 3th sphere from 2 sphere, whose x coordinate we can indicate.
+
+//Function "anothery" makes 3th sphere from 2 sphere, whose y coordinate we can indicate.
+
+//Function "anotherz" makes 3th sphere from 2 sphere, whose z coordinate we can indicate.
+
 #include<iostream>
 #include<vector>
 #include<algorithm>
