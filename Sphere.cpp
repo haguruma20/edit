@@ -106,6 +106,23 @@ point3 operator / (const point3& pt,const double& val)
   return ptn;
 }
 
+//addition with vector<double>
+point3 operator + (const std::vector<double>& vec,const point3 pt)
+{
+  if (vec.size()!=3)
+    {
+      std::cout<<"addition(vector,point3) is illegal!"<<std::endl;
+      throw;
+    }
+  point3 ptn(pt.xcoord+vec.at(0),pt.ycoord+vec.at(1),pt.zcoord+vec.at(2));
+  return ptn;
+};
+
+point3 operator + (const point3 pt,const std::vector<double>& vec)
+{
+  return vec+pt;
+};
+
 //Euclidean distance between 2 points
 double distance(const point3& p1,const point3& p2)
 {
@@ -165,6 +182,17 @@ Sphere operator * (const double val,const Sphere& sp)
 Sphere operator * (const Sphere& sp,const double val)
 {
   return val*sp;
+}
+
+Sphere operator + (const std::vector<double> vec,const Sphere& sp)
+{
+  Sphere nsp(sp.center+vec,sp.radius);
+  return nsp;
+}
+
+Sphere operator + (const Sphere& sp,const std::vector<double> vec)
+{
+  return vec+sp;
 }
 
 //This function returns the intersection circle of 2 spheres.
