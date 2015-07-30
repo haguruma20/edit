@@ -51,8 +51,9 @@ std::ostream& operator << (std::ostream& os, const point3& pt) {
 bool operator < (const point3& lhs, const point3& rhs) {
     return(lhs.zcoord < rhs.zcoord ||
            (lhs.zcoord == rhs.zcoord && lhs.ycoord < rhs.ycoord) ||
-           (lhs.zcoord == rhs.zcoord && lhs.ycoord == rhs.ycoord
-            && lhs.xcoord < rhs.xcoord));
+           (lhs.zcoord == rhs.zcoord &&
+            lhs.ycoord == rhs.ycoord &&
+            lhs.xcoord < rhs.xcoord));
 }
 
 point3 operator + (const point3& lhs, const point3& rhs) {
@@ -215,7 +216,8 @@ Sphere intersection(const Sphere& sp1, const Sphere& sp2) {
   return new_sp;
 }
 
-Sphere intersection(const Sphere& sp1, const Sphere& sp2,
+Sphere intersection(const Sphere& sp1,
+                    const Sphere& sp2,
                     const Sphere& sp3) {
   Sphere circle1 = intersection(sp1, sp2);
 
