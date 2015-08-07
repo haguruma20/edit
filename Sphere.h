@@ -1,5 +1,5 @@
-#ifndef SPHERE_H
-#define SPHERE_H
+#ifndef SPHERE_H_
+#define SPHERE_H_
 
 // "Copyright [2015] <haguruma20>"
 
@@ -432,4 +432,4 @@ Sphere anotherz(const Sphere& sp1, const Sphere& sp2, double z0,
     }
 }
 
-#endif  // SPHERE_H
+#endif  // SPHERE_H_
