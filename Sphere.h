@@ -22,6 +22,7 @@
 
 #include<math.h>
 #include<iostream>
+#include<string>
 #include<vector>
 #include<algorithm>
 
@@ -143,6 +144,11 @@ double distance(const Point3& p1, const Point3& p2) {
              +(p1.zcoord()-p2.zcoord())*(p1.zcoord()-p2.zcoord()), 0.5);
 }
 
+enum class OutputDelimiters {
+  TAB,
+  COMMA,
+  };
+
 class Sphere {
  public:
   // Sphere();
@@ -151,10 +157,16 @@ class Sphere {
   ~Sphere() {}
   Point3 center() const {return center_;}
   double radius() const {return radius_;}
+  static OutputDelimiters Delimiter;
+  static void set_delimiter_comma() {Delimiter = OutputDelimiters::COMMA;}
+
  private:
   Point3 center_;
   double radius_;
 };
+
+// Default delimiter for outputs. See also operator <<.
+OutputDelimiters Sphere::Delimiter = OutputDelimiters::TAB;
 
 Sphere::Sphere(Point3 p0, double r) {
   center_ = p0;
@@ -168,9 +180,20 @@ Sphere::Sphere(double x, double y, double z, double r) {
 }
 
 std::ostream& operator << (std::ostream& os, const Sphere& sp) {
-  os << sp.center().xcoord() << "\t"
-     << sp.center().ycoord() << "\t"
-     << sp.center().zcoord() << "\t"
+  std::string file_delimiter;
+  if (Sphere::Delimiter == OutputDelimiters::TAB) {
+    file_delimiter = "\t";
+  } else if (Sphere::Delimiter == OutputDelimiters::COMMA) {
+    file_delimiter = ",";
+  } else {
+    std::cout << "Something is wrong with Sphere::Delimiter in Sphere.h"
+              << std::endl;
+    throw;
+  }
+
+  os << sp.center().xcoord() << file_delimiter
+     << sp.center().ycoord() << file_delimiter
+     << sp.center().zcoord() << file_delimiter
      << sp.radius() << "\n";
   return os;
 }
